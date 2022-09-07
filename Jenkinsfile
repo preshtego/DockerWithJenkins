@@ -4,7 +4,7 @@ pipeline {
         stage ('Build') {
             steps {
                 sh 'printenv'
-                sh 'docker build -t preshtego/jenkinsdockerdemo:""$BUILD_ID .'
+                sh 'docker build -t preshtego/jenkinsdockerdemo .'
             }
         }
         stage ('Publish') {
