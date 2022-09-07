@@ -9,8 +9,10 @@ pipeline {
         }
         stage ('Publish') {
             steps {
-                withDockerRegistry([credentialsId: "docker-hub", url: "https://hub.docker.com/" ]) {
-                    sh 'docker push preshtego/jenkinsdockerdemo:""$BUILD_ID'
+                withCredentials([string(credentialsId: 'preshtego', variable: 'passwd')]) {
+                    sh 'docker login --username preshtego --password $passwd '
+                    
+                    sh 'docker push preshtego/jenkinsdockerdemo'
                 }
             }
         }
